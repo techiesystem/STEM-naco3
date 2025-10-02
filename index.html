@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodium Carbonate - eLearning Module</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0067b8;
+            --secondary: #107c10;
+            --accent: #ffb900;
+            --dark: #201e5c;
+            --light: #f3f6f9;
+            --text: #333;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e6f2ff, #f0f8ff);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .module-container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 10	00px;
+            margin: 0 auto;
+        }
+        
+        .module-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .module-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .module-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 25px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .content-container {
+            display: flex;
+            flex: 1;
+        }
+        
+        .navigation {
+            width: 250px;
+            background: var(--light);
+            padding: 30px 20px;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-header {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-items {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+        
+        .nav-item {
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-item:hover {
+            background: rgba(0, 103, 184, 0.1);
+        }
+        
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .progress-container {
+            margin-top: auto;
+            padding: 20px 0;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary);
+            width: 20%;
+            transition: width 0.5s ease;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .content-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .card-title {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: #e6f2ff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: inline-block;
+            font-size: 1.4rem;
+            color: var(--dark);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .reaction {
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--secondary);
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+        
+        .uses-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .uses-list li {
+            padding: 12px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .uses-list li:hover {
+            background: #e6f2ff;
+            transform: translateX(5px);
+            border-color: var(--primary);
+        }
+        
+        .visual-container {
+            background: linear-gradient(135deg, #e6f2ff, #f0f8ff);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .molecule {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+        }
+        
+        .atom {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.4rem;
+        }
+        
+        .sodium { background: var(--primary); top: 40px; left: 105px; }
+        .sodium2 { background: var(--primary); top: 180px; left: 105px; }
+        .carbon { background: var(--secondary); top: 110px; left: 35px; }
+        .oxygen { background: #d83b01; top: 40px; left: 175px; }
+        .oxygen2 { background: #d83b01; top: 110px; left: 175px; }
+        .oxygen3 { background: #d83b01; top: 180px; left: 175px; }
+        
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            background: #e6f2ff;
+            border-color: var(--primary);
+        }
+        
+        .option.selected {
+            background: #e6f2ff;
+            border-color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .feedback {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #e6ffed;
+            border: 1px solid #107c10;
+            color: #107c10;
+            display: block;
+        }
+        
+        .feedback.incorrect {
+            background: #fff5f5;
+            border: 1px solid #d83b01;
+            color: #d83b01;
+            display: block;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn:hover {
+            background: #005a9e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 103, 184, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #0d6b0d;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .footer {
+            background: var(--light);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 900px) {
+            .content-container {
+                flex-direction: column;
+            }
+            
+            .navigation {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            .nav-items {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .module-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header {
+                padding: 20px;
+            }
+            
+            .module-title {
+                font-size: 1.8rem;
+            }
+            
+            .module-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .info-card {
+                font-size: 0.9rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="module-container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="module-title">Sodium Carbonate: The Versatile Compound</h1>
+                <p class="module-subtitle">An Interactive eLearning Module for K12 STEM Students</p>
+                
+                <div class="module-info">
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <span>Duration: 25-35 minutes</span>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Grade Level: 9-12</span>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-flask"></i>
+                        <span>Chemistry | Industrial Chemistry</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-container">
+            <div class="navigation">
+                <div class="nav-header">
+                    <i class="fas fa-book"></i>
+                    <h3>Module Sections</h3>
+                </div>
+                
+                <ul class="nav-items">
+                    <li class="nav-item active" data-target="introduction">
+                        <i class="fas fa-home"></i>
+                        Introduction
+                    </li>
+                    <li class="nav-item" data-target="production">
+                        <i class="fas fa-industry"></i>
+                        Production
+                    </li>
+                    <li class="nav-item" data-target="properties">
+                        <i class="fas fa-snowflake"></i>
+                        Properties
+                    </li>
+                    <li class="nav-item" data-target="uses">
+                        <i class="fas fa-star"></i>
+                        Uses & Applications
+                    </li>
+                    <li class="nav-item" data-target="quiz">
+                        <i class="fas fa-question-circle"></i>
+                        Knowledge Check
+                    </li>
+                </ul>
+                
+                <div class="progress-container">
+                    <div class="progress-text">
+                        <span>Module Progress</span>
+                        <span id="progress-percent">20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <!-- Introduction Section -->
+                <div class="content-section active" id="introduction">
+                    <h2 class="section-title">
+                        <i class="fas fa-vial"></i>
+                        What is Sodium Carbonate?
+                    </h2>
+                    
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-info-circle"></i>
+                                Chemical Identity
+                            </h3>
+                            <p>Sodium carbonate (Na₂CO₃), commonly known as <strong>washing soda</strong> or <strong>soda ash</strong>, is a sodium salt of carbonic acid. It's a white, crystalline solid that has been used for centuries in various applications.</p>
+                            <div class="formula">Na<sub>2</sub>CO<sub>3</sub> · 10H<sub>2</sub>O</div>
+                            <p>In its decahydrate form, it contains 10 water molecules (water of crystallization), making it useful as washing soda.</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-history"></i>
+                                Historical Significance
+                            </h3>
+                            <p>Sodium carbonate has a fascinating history:</p>
+                            <ul>
+                                <li><strong>Ancient Egypt:</strong> Used in mummification and glass making</li>
+                                <li><strong>18th Century:</strong> Extracted from plant ashes (hence "soda ash")</li>
+                                <li><strong>1863:</strong> Solvay process developed for mass production</li>
+                                <li><strong>Today:</strong> Over 58 million tons produced annually worldwide</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="visual-container">
+                        <h3>Molecular Structure of Sodium Carbonate</h3>
+                        <div class="molecule">
+                            <div class="atom sodium">Na</div>
+                            <div class="atom sodium2">Na</div>
+                            <div class="atom carbon">C</div>
+                            <div class="atom oxygen">O</div>
+                            <div class="atom oxygen2">O</div>
+                            <div class="atom oxygen3">O</div>
+                        </div>
+                        <p>Sodium carbonate consists of two sodium ions (Na⁺) and one carbonate ion (CO₃²⁻). The carbonate ion has a trigonal planar structure with carbon at the center and three oxygen atoms at the corners.</p>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <div></div> <!-- Empty div for spacing -->
+                        <button class="btn next-section">
+                            Continue to Production <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Production Section -->
+                <div class="content-section" id="production">
+                    <h2 class="section-title">
+                        <i class="fas fa-industry"></i>
+                        Production: The Solvay Process
+                    </h2>
+                    
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-cogs"></i>
+                                Industrial Production
+                            </h3>
+                            <p>The Solvay process is the main industrial method for producing sodium carbonate. It was developed in 1863 by Ernest Solvay and revolutionized the chemical industry.</p>
+                            <p>This efficient process uses common salt (NaCl) and limestone (CaCO₃) as raw materials, with ammonia as a catalyst that's recycled.</p>
+                            <div class="formula">NaCl + CaCO<sub>3</sub> → Na<sub>2</sub>CO<sub>3</sub> + CaCl<sub>2</sub></div>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-recycle"></i>
+                                Process Advantages
+                            </h3>
+                            <ul>
+                                <li>Uses inexpensive raw materials</li>
+                                <li>Ammonia is recycled (not consumed)</li>
+                                <li>Low energy requirements</li>
+                                <li>Produces valuable byproduct (CaCl₂)</li>
+                                <li>Environmentally friendly</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3 class="card-title">
+                            <i class="fas fa-exchange-alt"></i>
+                            Key Reactions
+                        </h3>
+                        <div class="reaction">1. NH<sub>3</sub> + H<sub>2</sub>O + CO<sub>2</sub> → NH<sub>4</sub>HCO<sub>3</sub></div>
+                        <p>Ammonia, water and carbon dioxide form ammonium bicarbonate</p>
+                        
+                        <div class="reaction">2. NaCl + NH<sub>4</sub>HCO<sub>3</sub> → NaHCO<sub>3</sub> + NH<sub>4</sub>Cl</div>
+                        <p>Sodium chloride reacts with ammonium bicarbonate to form sodium bicarbonate</p>
+                        
+                        <div class="reaction">3. 2NaHCO<sub>3</sub> → Na<sub>2</sub>CO<sub>3</sub> + H<sub>2</sub>O + CO<sub>2</sub> (150°C)</div>
+                        <p>Sodium bicarbonate is heated to form sodium carbonate</p>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn prev-section">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn next-section">
+                            Continue to Properties <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Properties Section -->
+                <div class="content-section" id="properties">
+                    <h2 class="section-title">
+                        <i class="fas fa-snowflake"></i>
+                        Physical & Chemical Properties
+                    </h2>
+                    
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-temperature-high"></i>
+                                Physical Properties
+                            </h3>
+                            <p>Sodium carbonate exists in different forms:</p>
+                            <ul>
+                                <li><strong>Decahydrate:</strong> Na₂CO₃·10H₂O (washing soda) - transparent crystals</li>
+                                <li><strong>Monohydrate:</strong> Na₂CO₃·H₂O - white powder</li>
+                                <li><strong>Anhydrous:</strong> Na₂CO₃ (soda ash) - fine white powder</li>
+                            </ul>
+                            
+                            <div class="reaction">Na<sub>2</sub>CO<sub>3</sub> · 10H<sub>2</sub>O → Na<sub>2</sub>CO<sub>3</sub> · H<sub>2</sub>O + 9H<sub>2</sub>O (373K)</div>
+                            <div class="reaction">Na<sub>2</sub>CO<sub>3</sub> · H<sub>2</sub>O → Na<sub>2</sub>CO<sub>3</sub> + H<sub>2</sub>O (>373K)</div>
+                            <p>When exposed to air, washing soda loses water and becomes powdery (efflorescence).</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-vial"></i>
+                                Chemical Properties
+                            </h3>
+                            <p>When dissolved in water:</p>
+                            <div class="reaction">CO<sub>3</sub><sup>2-</sup> + H<sub>2</sub>O ⇌ HCO<sub>3</sub><sup>-</sup> + OH<sup>-</sup></div>
+                            <p>This makes the solution alkaline (pH ≈ 11).</p>
+                            
+                            <p>Other important reactions:</p>
+                            <ul>
+                                <li>Reacts with acids to produce CO₂ gas</li>
+                                <li>Forms precipitates with calcium and magnesium</li>
+                                <li>Absorbs CO₂ from air to form sodium bicarbonate</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="visual-container">
+                        <h3>Hydrolysis: Why Sodium Carbonate Solution is Alkaline</h3>
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="width: 180px; height: 180px; background: linear-gradient(to bottom, #0067b8, #00b4ff); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; font-size: 2.5rem; margin: 0 auto 20px;">
+                                    pH 11
+                                </div>
+                                <p>Alkaline Solution</p>
+                            </div>
+                            
+                            <div style="max-width: 500px; text-align: left;">
+                                <p>The carbonate ion (CO₃²⁻) acts as a base by accepting a proton from water, producing hydroxide ions (OH⁻) and bicarbonate (HCO₃⁻).</p>
+                                <div class="reaction">CO<sub>3</sub><sup>2-</sup> + H<sub>2</sub>O → HCO<sub>3</sub><sup>-</sup> + OH<sup>-</sup></div>
+                                <p>This reaction gives sodium carbonate solutions their alkaline properties, making them useful for cleaning and water softening.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn prev-section">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn next-section">
+                            Continue to Uses <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Uses Section -->
+                <div class="content-section" id="uses">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Uses & Applications
+                    </h2>
+                    
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-home"></i>
+                                Household Uses
+                            </h3>
+                            <ul class="uses-list">
+                                <li>
+                                    <i class="fas fa-tshirt"></i>
+                                    <div>
+                                        <strong>Laundry booster</strong> - softens water and removes stains
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-shower"></i>
+                                    <div>
+                                        <strong>Water softener</strong> - removes hard water minerals
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-broom"></i>
+                                    <div>
+                                        <strong>All-purpose cleaner</strong> - for kitchens and bathrooms
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-drain"></i>
+                                    <div>
+                                        <strong>Drain cleaner</strong> - mixed with vinegar to clear clogs
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paint-roller"></i>
+                                    <div>
+                                        <strong>Paint preparation</strong> - helps clean surfaces before painting
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">
+                                <i class="fas fa-industry"></i>
+                                Industrial Applications
+                            </h3>
+                            <ul class="uses-list">
+                                <li>
+                                    <i class="fas fa-wine-bottle"></i>
+                                    <div>
+                                        <strong>Glass manufacturing</strong> - main component in soda-lime glass (70% of production)
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-pump-soap"></i>
+                                    <div>
+                                        <strong>Soap and detergent production</strong> - helps remove grease
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-vial"></i>
+                                    <div>
+                                        <strong>Chemical manufacturing</strong> - used to make other sodium compounds
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-fire-extinguisher"></i>
+                                    <div>
+                                        <strong>Fire extinguishers</strong> - in dry chemical fire suppression
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-water"></i>
+                                    <div>
+                                        <strong>Water treatment</strong> - pH regulation in pools and wastewater
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3 class="card-title">
+                            <i class="fas fa-recycle"></i>
+                            Environmental Impact
+                        </h3>
+                        <p>Sodium carbonate is environmentally friendly:</p>
+                        <ul>
+                            <li><strong>Non-toxic</strong> and biodegradable</li>
+                            <li><strong>Solvay process</strong> recycles ammonia and CO₂</li>
+                            <li>Byproduct (CaCl₂) is used for de-icing roads</li>
+                            <li>Production has minimal environmental impact compared to other industrial chemicals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn prev-section">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn next-section">
+                            Take Knowledge Check <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quiz Section -->
+                <div class="content-section" id="quiz">
+                    <h2 class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        Knowledge Check
+                    </h2>
+                    
+                    <div class="quiz-container">
+                        <div class="question">
+                            <h3>1. What is the chemical formula for washing soda?</h3>
+                            <div class="options">
+                                <div class="option" data-correct="true">Na₂CO₃·10H₂O</div>
+                                <div class="option">Na₂CO₃</div>
+                                <div class="option">NaHCO₃</div>
+                                <div class="option">NaCl</div>
+                            </div>
+                            <div class="feedback">
+                                <p><strong>Correct!</strong> Washing soda is the hydrated form of sodium carbonate with 10 water molecules.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <h3>2. Which industrial process is used to produce sodium carbonate?</h3>
+                            <div class="options">
+                                <div class="option">Haber process</div>
+                                <div class="option" data-correct="true">Solvay process</div>
+                                <div class="option">Contact process</div>
+                                <div class="option">Ostwald process</div>
+                            </div>
+                            <div class="feedback">
+                                <p><strong>Correct!</strong> The Solvay process, developed in 1863, is the primary method for sodium carbonate production.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <h3>3. What happens when sodium carbonate is dissolved in water?</h3>
+                            <div class="options">
+                                <div class="option">It forms an acidic solution</div>
+                                <div class="option">It remains neutral</div>
+                                <div class="option" data-correct="true">It forms an alkaline solution</div>
+                                <div class="option">It releases chlorine gas</div>
+                            </div>
+                            <div class="feedback">
+                                <p><strong>Correct!</strong> Sodium carbonate solutions are alkaline (pH ≈ 11) due to hydrolysis.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <h3>4. Which of these is NOT a common use of sodium carbonate?</h3>
+                            <div class="options">
+                                <div class="option">Glass manufacturing</div>
+                                <div class="option">Water softening</div>
+                                <div class="option" data-correct="true">Food preservation</div>
+                                <div class="option">Detergent production</div>
+                            </div>
+                            <div class="feedback">
+                                <p><strong>Correct!</strong> Sodium carbonate is not typically used for food preservation; that's sodium benzoate or sodium nitrite.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="question">
+                            <h3>5. What is the main reason sodium carbonate is effective for cleaning?</h3>
+                            <div class="options">
+                                <div class="option">Its bleaching properties</div>
+                                <div class="option" data-correct="true">Its alkaline nature</div>
+                                <div class="option">Its abrasive texture</div>
+                                <div class="option">Its pleasant smell</div>
+                            </div>
+                            <div class="feedback">
+                                <p><strong>Correct!</strong> The alkaline solution helps break down grease and oils through saponification.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn prev-section">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn btn-secondary" id="check-answers">
+                            <i class="fas fa-check-circle"></i> Check Answers
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 STEM | Developed by: Kannan Kasi (STEM Training Architect) | Sodium Carbonate Module | For Educational Use Only</p>
+            <p>This module meets Next Generation Science Standards (NGSS) for Chemistry education</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation functionality
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const progressFill = document.getElementById('progress-fill');
+            const progressPercent = document.getElementById('progress-percent');
+            
+            // Set progress based on active section
+            function updateProgress() {
+                const activeIndex = Array.from(contentSections).findIndex(section => 
+                    section.classList.contains('active'));
+                const percent = (activeIndex + 1) * 20;
+                progressFill.style.width = `${percent}%`;
+                progressPercent.textContent = `${percent}%`;
+            }
+            
+            // Navigation item click
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    
+                    // Update navigation
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update content
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === target) {
+                            section.classList.add('active');
+                        }
+                    });
+                    
+                    updateProgress();
+                });
+            });
+            
+            // Next section buttons
+            const nextButtons = document.querySelectorAll('.next-section');
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentSection = this.closest('.content-section');
+                    const currentIndex = Array.from(contentSections).indexOf(currentSection);
+                    const nextIndex = currentIndex + 1;
+                    
+                    if (nextIndex < contentSections.length) {
+                        // Update navigation
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        navItems[nextIndex].classList.add('active');
+                        
+                        // Update content
+                        contentSections.forEach(section => section.classList.remove('active'));
+                        contentSections[nextIndex].classList.add('active');
+                        
+                        updateProgress();
+                    }
+                });
+            });
+            
+            // Previous section buttons
+            const prevButtons = document.querySelectorAll('.prev-section');
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentSection = this.closest('.content-section');
+                    const currentIndex = Array.from(contentSections).indexOf(currentSection);
+                    const prevIndex = currentIndex - 1;
+                    
+                    if (prevIndex >= 0) {
+                        // Update navigation
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        navItems[prevIndex].classList.add('active');
+                        
+                        // Update content
+                        contentSections.forEach(section => section.classList.remove('active'));
+                        contentSections[prevIndex].classList.add('active');
+                        
+                        updateProgress();
+                    }
+                });
+            });
+            
+            // Quiz functionality
+            const options = document.querySelectorAll('.option');
+            const checkButton = document.getElementById('check-answers');
+            
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from siblings in same question
+                    const siblings = this.parentElement.querySelectorAll('.option');
+                    siblings.forEach(sib => sib.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Remove any existing feedback
+                    const feedback = this.closest('.question').querySelector('.feedback');
+                    feedback.classList.remove('correct', 'incorrect');
+                });
+            });
+            
+            checkButton.addEventListener('click', function() {
+                let allAnswered = true;
+                
+                options.forEach(option => {
+                    const question = option.closest('.question');
+                    const feedback = question.querySelector('.feedback');
+                    
+                    if (option.classList.contains('selected')) {
+                        if (option.hasAttribute('data-correct')) {
+                            feedback.classList.add('correct');
+                            feedback.querySelector('p').innerHTML = '<strong>Correct!</strong> ' + 
+                                feedback.querySelector('p').textContent.split('Correct! ')[1];
+                        } else {
+                            feedback.classList.add('incorrect');
+                            feedback.querySelector('p').innerHTML = '<strong>Incorrect.</strong> ' + 
+                                feedback.querySelector('p').textContent.split('Correct! ')[1];
+                        }
+                    } else {
+                        // Check if any option in this question is selected
+                        const selected = question.querySelector('.selected');
+                        if (!selected) {
+                            allAnswered = false;
+                        }
+                    }
+                });
+                
+                if (!allAnswered) {
+                    alert('Please answer all questions before checking answers.');
+                }
+            });
+            
+            // Initialize progress
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
